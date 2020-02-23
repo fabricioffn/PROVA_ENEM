@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+
 
 namespace prova_enem
 {
@@ -9,7 +11,7 @@ namespace prova_enem
             string nomeAluno;
             string nomeEscola;
             string resposta;
-            int totalQuestoes = 5;
+            int totalQuestoes;
 
             string questaoPortugues = @"
     O léxico e a cultura
@@ -39,7 +41,7 @@ namespace prova_enem
         c)65700 
         d)87600";
 
-        string questaoHistoria = @"
+            string questaoHistoria = @"
     É preciso ressaltar que, de todas as capitanias brasileiras, Minas era a mais urbanizada.
     Não havia ali hegemonia de um ou dois grandes centros. 
     A região era repleta de vilas e arraiais, grandes e pequenos, em cujas ruas muita gente circulava.
@@ -86,91 +88,126 @@ namespace prova_enem
             nomeAluno = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("digite o nome de sua escola");
-             Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Gray;
             nomeEscola = Console.ReadLine();
-            Console.WriteLine("vamos começar.... ");
-            Console.WriteLine("materia português:digite enter pra continuar");
-            Console.ReadLine();
-            //Inicio da questão de português
-            Console.WriteLine(questaoPortugues);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("informe a alternativa correta:");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            resposta = Console.ReadLine();
+
+            Boolean continuar = true;
+
+            while (continuar)
+            {
+                totalQuestoes = 5;
+
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("vamos começar.... ");
+                Console.WriteLine("materia português:digite enter pra continuar");
+                Console.ReadLine();
+                //Inicio da questão de português
+                Console.WriteLine(questaoPortugues);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("informe a alternativa correta:");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                resposta = Console.ReadLine();
+
+
+                if (resposta != "c")
+                {
+                    totalQuestoes = totalQuestoes - 1;
+                }
+                //inicio questao de matematica
+
+                Console.WriteLine("Matematica:");
+                Console.WriteLine(questaoMatematica);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("digite a alternaiva correta");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                resposta = Console.ReadLine();
+
+                if (resposta != "b")
+                {
+                    totalQuestoes = totalQuestoes - 1;
+                }
+
+                //Inicio da Questao de História
+
+                Console.WriteLine("HISTORIA");
+                Console.WriteLine(questaoHistoria);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("informe a alternativa correta");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                resposta = Console.ReadLine();
+                if (resposta != "b")
+                {
+                    totalQuestoes = totalQuestoes - 1;
+                }
+
+                //Inicio da questao de biologia
+                Console.WriteLine(questaoBiologia);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("informe a alternativa correta");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                resposta = Console.ReadLine();
+                if (resposta != "b")
+                {
+                    totalQuestoes = totalQuestoes - 1;
+                }
+                //inicio questao de quimica
+                Console.WriteLine(questaoQuimica);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("informe a alternativa correta");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                resposta = Console.ReadLine();
+
+                if (resposta != "c")
+                {
+                    totalQuestoes = totalQuestoes - 1;
+                }
+
+                //iniciando avaliacao da prova
+
+                if (totalQuestoes >= 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("voçê acertou " + totalQuestoes + " no total de 5. voçê passou no enem 2020 ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(nomeAluno + " congratulations my little friend");
+                    continuar = false;
+                    Console.WriteLine("Digite Enter para salvar sua prova e sair de férias");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("voçê acertou  " + totalQuestoes + " questões. Para passar é preciso acertar mais de 4.");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine(nomeAluno + " , volte para a escola " + nomeEscola + " e estude mais");
+                    Console.WriteLine("PRESTE ATENÇÃO NO SEU PROFESSOR");
+                    
+                    Console.Beep(300, 500);
+                    Thread.Sleep(50); 
+                    Console.Beep(300, 500);
+                    Thread.Sleep(50);
+                    Console.Beep(300, 500);
+                    Thread.Sleep(50);
+                    Console.Beep(250, 500);
+                    Thread.Sleep(50);
+                    Console.Beep(350, 250);
+                    Console.Beep(300, 500);
+                    Thread.Sleep(50);
+                    Console.Beep(250, 500);
+                    Thread.Sleep(50);
+                    Console.Beep(350, 250);
+                    Console.Beep(300, 500);
+                    Thread.Sleep(50); 
+                    
+                    Console.WriteLine("Você quer tentar realizar a prova novamente? Digite S ou N");
+                    var respostaContinuaProva = Console.ReadLine();
+
+                    if(respostaContinuaProva == "n")
+                        continuar = false;
             
-
-            if (resposta != "c")
-            {
-                totalQuestoes = totalQuestoes - 1;
+                }
+                
             }
-            //inicio questao de matematica
-
-            Console.WriteLine("Matematica:");
-            Console.WriteLine(questaoMatematica);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("digite a alternaiva correta");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            resposta = Console.ReadLine();
-
-            if (resposta != "b")
-            {
-                totalQuestoes = totalQuestoes - 1;
-            }
-            
-            //Inicio da Questao de História
-
-            Console.WriteLine("HISTORIA");
-            Console.WriteLine(questaoHistoria);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("informe a alternativa correta");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            resposta = Console.ReadLine();
-            if (resposta != "b")
-            {
-                totalQuestoes = totalQuestoes - 1;
-            }
-           
-            //Inicio da questao de biologia
-            Console.WriteLine(questaoBiologia);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("informe a alternativa correta");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            resposta = Console.ReadLine();
-            if (resposta != "b")
-            {
-                totalQuestoes = totalQuestoes - 1;
-            }
-            //inicio questao de quimica
-            Console.WriteLine(questaoQuimica);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("informe a alternativa correta");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            resposta = Console.ReadLine();
-            
-            if (resposta != "c")
-            {
-                totalQuestoes = totalQuestoes - 1;
-            }
-           
-            //iniciando avaliacao da prova
-
-            if (totalQuestoes >= 4)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("voçê acertou " + totalQuestoes + " no total de 5. voçê passou no enem 2020 ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(nomeAluno + " congratulations my little friend");
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("voçê acertou  " + totalQuestoes + " questões. Para passar é preciso acertar mais de 4.");
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine(nomeAluno + " , volte para a escola " + nomeEscola + " e estude mais");
-                Console.WriteLine("PRESTE ATENÇÃO NO SEU PROFESSOR");
-            }
-
-            Console.ReadLine();
 
         }
     }

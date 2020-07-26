@@ -1,2 +1,2 @@
 # PROVA_ENEM
-eu q fiz com a ajuda do mamao
+fiz esse software pensando em como resolver essa questão de prova do enem em meio essa pandemia
